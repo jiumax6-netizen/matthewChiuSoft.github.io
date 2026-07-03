@@ -563,10 +563,39 @@
             z-index: 200;
             opacity: 0;
             pointer-events: none;
+            white-space: nowrap;
         }
 
         .float-correct.show {
             animation: floatUp 1.2s ease-out forwards;
+        }
+
+        .float-wrong {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.5);
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #d9534f;
+            text-shadow: 3px 3px 0 #fdecea, 0 0 20px rgba(217, 83, 79, 0.5);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            white-space: nowrap;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .float-wrong .wrong-detail {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .float-wrong.show {
+            animation: floatUp 1.5s ease-out forwards;
         }
 
         @keyframes floatUp {
@@ -586,6 +615,234 @@
                 opacity: 0;
                 transform: translateX(-50%) translateY(-60px) scale(0.9);
             }
+        }
+
+        .wrong-book-btn {
+            background: #e74c3c;
+            box-shadow: 0 5px 0 #c0392b;
+            font-size: 0.9rem;
+            padding: 8px 14px;
+            min-width: auto;
+            position: relative;
+        }
+
+        .wrong-book-btn .badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #fff;
+            color: #e74c3c;
+            font-size: 0.7rem;
+            font-weight: 800;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .wrong-book-btn:disabled .badge {
+            display: none;
+        }
+
+        .wrong-book-modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .wrong-book-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .wrong-book-content {
+            background: #fffbee;
+            border-radius: 24px;
+            padding: 20px 16px;
+            width: 92%;
+            max-width: 460px;
+            max-height: 85%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .wrong-book-modal.show .wrong-book-content {
+            transform: scale(1);
+        }
+
+        .wrong-book-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #e74c3c;
+            margin-bottom: 12px;
+        }
+
+        .wrong-book-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #c0392b;
+            text-shadow: 1px 1px 0 #fdecea;
+        }
+
+        .wrong-book-close {
+            background: #95a5a6;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #7f8c8d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .wrong-book-close:active {
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #7f8c8d;
+        }
+
+        .wrong-book-list {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-right: 4px;
+        }
+
+        .wrong-book-empty {
+            text-align: center;
+            color: #999;
+            padding: 40px 0;
+            font-size: 1rem;
+        }
+
+        .wrong-item {
+            background: #fdf8ed;
+            border: 2px solid #f5b7b1;
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .wrong-item.solved {
+            border-color: #5cb85c;
+            background: #f0faef;
+        }
+
+        .wrong-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .wrong-item-question {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #1f4a2c;
+            margin-bottom: 4px;
+        }
+
+        .wrong-item-answers {
+            font-size: 0.8rem;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        .wrong-item-answers .your-ans {
+            color: #d9534f;
+            font-weight: 700;
+        }
+
+        .wrong-item-answers .right-ans {
+            color: #5cb85c;
+            font-weight: 700;
+        }
+
+        .wrong-item-redo {
+            background: #e74c3c;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #c0392b;
+            flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .wrong-item-redo:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #c0392b;
+        }
+
+        .wrong-item-redo:disabled {
+            background: #95a5a6;
+            box-shadow: 0 4px 0 #7f8c8d;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .wrong-book-footer {
+            padding-top: 12px;
+            border-top: 2px dashed #eac089;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .wrong-book-action-btn {
+            background: #f5b06b;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b1703a;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .wrong-book-action-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #b1703a;
+        }
+
+        .wrong-book-action-btn.clear-btn {
+            background: #95a5a6;
+            box-shadow: 0 5px 0 #7f8c8d;
+        }
+
+        .wrong-book-action-btn.clear-btn:active {
+            box-shadow: 0 2px 0 #7f8c8d;
         }
 
         @media (max-width: 360px) {
@@ -708,6 +965,7 @@
 
     <div class="word-area">
         <div class="float-correct" id="floatCorrect">✅ 答对啦！</div>
+        <div class="float-wrong" id="floatWrong"><span id="floatWrongTitle">❌ 答错了</span><span class="wrong-detail" id="floatWrongDetail"></span></div>
         <div class="word-card" id="wordCard">
             <div class="word-text" id="currentWord">🐣 准备开始</div>
             <div class="word-sub" id="subTypeLabel">👩‍🏫 点击下方按钮开始</div>
@@ -750,6 +1008,7 @@
     <div class="nav-area">
         <button class="nav-btn prev-btn" id="prevBtn">◀ 上一题</button>
         <span class="progress-hint" id="roundHint">🏁 第 1 轮</span>
+        <button class="nav-btn wrong-book-btn" id="wrongBookBtn">📓 错题本<span class="badge" id="wrongBadge">0</span></button>
         <button class="nav-btn reset-btn" id="resetBtn">🔄 重开</button>
     </div>
 </div>
@@ -773,6 +1032,22 @@
         </div>
         <div class="finish-time" id="finishTime">总用时：00:00</div>
         <button class="finish-btn" id="restartBtn">再来一次</button>
+    </div>
+</div>
+
+<div class="wrong-book-modal" id="wrongBookModal">
+    <div class="wrong-book-content">
+        <div class="wrong-book-header">
+            <div class="wrong-book-title">📓 错题本</div>
+            <button class="wrong-book-close" id="wrongBookClose">✕</button>
+        </div>
+        <div class="wrong-book-list" id="wrongBookList">
+            <div class="wrong-book-empty">暂无错题，继续加油！</div>
+        </div>
+        <div class="wrong-book-footer">
+            <button class="wrong-book-action-btn" id="redoAllBtn">📝 全部重做</button>
+            <button class="wrong-book-action-btn clear-btn" id="clearWrongBtn">🗑️ 清空</button>
+        </div>
     </div>
 </div>
 
@@ -932,6 +1207,11 @@
         var userAnswers = {};
         var questionResults = {};
 
+        var wrongQuestions = [];
+        var redoMode = false;
+        var redoList = [];
+        var redoIndex = 0;
+
         var wordDisplay = document.getElementById('currentWord');
         var wordCard = document.getElementById('wordCard');
         var progressDisplay = document.getElementById('progressDisplay');
@@ -958,6 +1238,16 @@
         var restartBtn = document.getElementById('restartBtn');
         var floatCorrect = document.getElementById('floatCorrect');
         var floatTimer = null;
+        var floatWrong = document.getElementById('floatWrong');
+        var floatWrongTitle = document.getElementById('floatWrongTitle');
+        var floatWrongDetail = document.getElementById('floatWrongDetail');
+        var wrongBookBtn = document.getElementById('wrongBookBtn');
+        var wrongBadge = document.getElementById('wrongBadge');
+        var wrongBookModal = document.getElementById('wrongBookModal');
+        var wrongBookClose = document.getElementById('wrongBookClose');
+        var wrongBookList = document.getElementById('wrongBookList');
+        var redoAllBtn = document.getElementById('redoAllBtn');
+        var clearWrongBtn = document.getElementById('clearWrongBtn');
 
         function updateTimer() {
             if (!startTime) return;
@@ -1076,6 +1366,7 @@
                 floatTimer = null;
             }
             floatCorrect.classList.remove('show');
+            floatWrong.classList.remove('show');
             void floatCorrect.offsetWidth;
             floatCorrect.classList.add('show');
             floatTimer = setTimeout(function() {
@@ -1084,7 +1375,249 @@
             }, 1200);
         }
 
+        function showFloatWrong(correctAnswer) {
+            if (floatTimer) {
+                clearTimeout(floatTimer);
+                floatTimer = null;
+            }
+            floatCorrect.classList.remove('show');
+            floatWrong.classList.remove('show');
+            floatWrongDetail.textContent = '正确答案：' + correctAnswer;
+            void floatWrong.offsetWidth;
+            floatWrong.classList.add('show');
+            floatTimer = setTimeout(function() {
+                floatWrong.classList.remove('show');
+                floatTimer = null;
+            }, 1500);
+        }
+
+        function addWrongQuestion(q, userAnswer) {
+            var existIdx = -1;
+            for (var i = 0; i < wrongQuestions.length; i++) {
+                if (wrongQuestions[i].display === q.display) {
+                    existIdx = i;
+                    break;
+                }
+            }
+            if (existIdx >= 0) {
+                wrongQuestions[existIdx].wrongAnswers.push(userAnswer);
+                wrongQuestions[existIdx].solved = false;
+            } else {
+                wrongQuestions.push({
+                    display: q.display,
+                    type: q.type,
+                    answer: q.answer,
+                    wrongAnswers: [userAnswer],
+                    solved: false
+                });
+            }
+            updateWrongBadge();
+        }
+
+        function updateWrongBadge() {
+            var unsolvedCount = 0;
+            for (var i = 0; i < wrongQuestions.length; i++) {
+                if (!wrongQuestions[i].solved) unsolvedCount++;
+            }
+            wrongBadge.textContent = unsolvedCount;
+            wrongBookBtn.disabled = (wrongQuestions.length === 0);
+        }
+
+        function renderWrongBook() {
+            if (wrongQuestions.length === 0) {
+                wrongBookList.innerHTML = '<div class="wrong-book-empty">暂无错题，继续加油！🎉</div>';
+                return;
+            }
+            var html = '';
+            for (var i = 0; i < wrongQuestions.length; i++) {
+                var wq = wrongQuestions[i];
+                var wrongAnsStr = wq.wrongAnswers.join('、');
+                var solvedClass = wq.solved ? ' solved' : '';
+                var redoBtnHtml = wq.solved
+                    ? '<button class="wrong-item-redo" disabled>已重做</button>'
+                    : '<button class="wrong-item-redo" data-redo-idx="' + i + '">重做</button>';
+                html += '<div class="wrong-item' + solvedClass + '">'
+                    + '<div class="wrong-item-info">'
+                    + '<div class="wrong-item-question">' + wq.display + ' = ?</div>'
+                    + '<div class="wrong-item-answers">你的答案：<span class="your-ans">' + wrongAnsStr + '</span><br>正确答案：<span class="right-ans">' + wq.answer + '</span></div>'
+                    + '</div>'
+                    + redoBtnHtml
+                    + '</div>';
+            }
+            wrongBookList.innerHTML = html;
+        }
+
+        function showWrongBook() {
+            renderWrongBook();
+            wrongBookModal.classList.add('show');
+        }
+
+        function hideWrongBook() {
+            wrongBookModal.classList.remove('show');
+        }
+
+        function startRedoSingle(idx) {
+            redoMode = true;
+            redoList = [wrongQuestions[idx]];
+            redoIndex = 0;
+            hideWrongBook();
+            hideFinish();
+            stopTimer();
+            startTime = null;
+            updateTimer();
+            correctCount = 0;
+            wrongCount = 0;
+            updateStats();
+            startTimer();
+            updateRedoDisplay();
+        }
+
+        function startRedoAll() {
+            var unsolved = [];
+            for (var i = 0; i < wrongQuestions.length; i++) {
+                if (!wrongQuestions[i].solved) unsolved.push(wrongQuestions[i]);
+            }
+            if (unsolved.length === 0) {
+                return;
+            }
+            redoMode = true;
+            redoList = unsolved;
+            redoIndex = 0;
+            hideWrongBook();
+            hideFinish();
+            stopTimer();
+            startTime = null;
+            updateTimer();
+            correctCount = 0;
+            wrongCount = 0;
+            updateStats();
+            startTimer();
+            updateRedoDisplay();
+        }
+
+        function updateRedoDisplay() {
+            if (!redoMode || redoList.length === 0) return;
+            var q = redoList[redoIndex];
+            wordDisplay.classList.remove('word-pop');
+            void wordDisplay.offsetWidth;
+            wordDisplay.textContent = q.display;
+            wordDisplay.classList.add('word-pop');
+
+            progressDisplay.textContent = '错题重做 ' + (redoIndex + 1) + ' / ' + redoList.length;
+
+            var typeMap = {
+                '不进位加法': '➕ 不进位加法',
+                '退位减法': '➖ 退位减法',
+                '不退位减法': '➖ 不退位减法',
+                '进位加法': '➕ 进位加法'
+            };
+            typeDisplay.textContent = typeMap[q.type] || q.type;
+            subTypeLabel.textContent = '📌 ' + q.type + '（错题重做）';
+            roundHint.textContent = '📝 错题重做';
+
+            prevBtn.disabled = true;
+            nextBtn.disabled = (redoIndex >= redoList.length - 1);
+
+            wordCard.style.transform = 'scale(0.98)';
+            setTimeout(function() {
+                wordCard.style.transform = '';
+            }, 150);
+
+            wordCard.classList.remove('correct', 'wrong');
+            answerInput.classList.remove('correct', 'wrong');
+            resultHint.textContent = '';
+            resultHint.classList.remove('correct', 'wrong');
+            answerInput.value = '';
+            answerInput.focus();
+        }
+
+        function submitRedoAnswer() {
+            if (redoList.length === 0) return;
+            var q = redoList[redoIndex];
+            var userVal = answerInput.value.trim();
+            if (userVal === '') {
+                resultHint.textContent = '⚠️ 请输入答案';
+                resultHint.classList.remove('correct', 'wrong');
+                return;
+            }
+            var userNum = parseInt(userVal, 10);
+            if (isNaN(userNum)) {
+                resultHint.textContent = '⚠️ 请输入有效数字';
+                resultHint.classList.remove('correct', 'wrong');
+                return;
+            }
+            startTimer();
+            var isCorrect = userNum === q.answer;
+
+            if (isCorrect) {
+                correctCount++;
+                wordCard.classList.add('correct');
+                answerInput.classList.add('correct');
+                resultHint.textContent = '';
+                resultHint.classList.remove('correct', 'wrong');
+                showFloatCorrect();
+                updateStats();
+
+                for (var i = 0; i < wrongQuestions.length; i++) {
+                    if (wrongQuestions[i].display === q.display) {
+                        wrongQuestions[i].solved = true;
+                        break;
+                    }
+                }
+                updateWrongBadge();
+
+                if (redoIndex < redoList.length - 1) {
+                    setTimeout(function() {
+                        redoIndex++;
+                        updateRedoDisplay();
+                    }, 200);
+                } else {
+                    setTimeout(function() {
+                        redoMode = false;
+                        showFinish();
+                    }, 800);
+                }
+            } else {
+                wrongCount++;
+                wordCard.classList.add('wrong');
+                answerInput.classList.add('wrong');
+                resultHint.textContent = '';
+                resultHint.classList.remove('correct', 'wrong');
+                showFloatWrong(q.answer);
+                updateStats();
+
+                var existIdx = -1;
+                for (var j = 0; j < wrongQuestions.length; j++) {
+                    if (wrongQuestions[j].display === q.display) {
+                        existIdx = j;
+                        break;
+                    }
+                }
+                if (existIdx >= 0) {
+                    wrongQuestions[existIdx].wrongAnswers.push(userVal);
+                    wrongQuestions[existIdx].solved = false;
+                }
+                updateWrongBadge();
+
+                if (redoIndex < redoList.length - 1) {
+                    setTimeout(function() {
+                        redoIndex++;
+                        updateRedoDisplay();
+                    }, 400);
+                } else {
+                    setTimeout(function() {
+                        redoMode = false;
+                        showFinish();
+                    }, 1000);
+                }
+            }
+        }
+
         function submitAnswer() {
+            if (redoMode) {
+                submitRedoAnswer();
+                return;
+            }
             if (total === 0) return;
 
             var q = allQuestions[currentIndex];
@@ -1130,17 +1663,30 @@
                 wrongCount++;
                 wordCard.classList.add('wrong');
                 answerInput.classList.add('wrong');
-                resultHint.textContent = '❌ 正确答案：' + q.answer;
-                resultHint.classList.add('wrong');
+                resultHint.textContent = '';
+                resultHint.classList.remove('correct', 'wrong');
+
+                addWrongQuestion(q, userVal);
+                showFloatWrong(q.answer);
                 updateStats();
+
+                if (currentIndex < total - 1) {
+                    setTimeout(function() {
+                        goNext();
+                    }, 400);
+                } else {
+                    setTimeout(showFinish, 1000);
+                }
             }
         }
 
         function showFinish() {
             stopTimer();
-            finishTotal.textContent = total;
-            finishCorrect.textContent = correctCount;
-            var acc = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+            var sessionTotal = redoList.length > 0 ? redoList.length : total;
+            var sessionCorrect = correctCount;
+            finishTotal.textContent = sessionTotal;
+            finishCorrect.textContent = sessionCorrect;
+            var acc = sessionTotal > 0 ? Math.round((sessionCorrect / sessionTotal) * 100) : 0;
             finishAccuracy.textContent = acc + '%';
             finishTime.textContent = '总用时：' + totalTimeEl.textContent;
             finishModal.classList.add('show');
@@ -1157,6 +1703,10 @@
                 floatTimer = null;
             }
             floatCorrect.classList.remove('show');
+            floatWrong.classList.remove('show');
+            redoMode = false;
+            redoList = [];
+            redoIndex = 0;
             startTime = null;
             updateTimer();
             correctCount = 0;
@@ -1167,27 +1717,38 @@
             updateStats();
             updateDisplay();
             hideFinish();
+            hideWrongBook();
+        }
+
+        function clearWrongQuestions() {
+            wrongQuestions = [];
+            updateWrongBadge();
+            renderWrongBook();
         }
 
         function goPrev() {
+            if (redoMode) return;
             if (currentIndex > 0) {
                 if (floatTimer) {
                     clearTimeout(floatTimer);
                     floatTimer = null;
                 }
                 floatCorrect.classList.remove('show');
+                floatWrong.classList.remove('show');
                 currentIndex--;
                 updateDisplay();
             }
         }
 
         function goNext() {
+            if (redoMode) return;
             if (currentIndex < total - 1) {
                 if (floatTimer) {
                     clearTimeout(floatTimer);
                     floatTimer = null;
                 }
                 floatCorrect.classList.remove('show');
+                floatWrong.classList.remove('show');
                 currentIndex++;
                 updateDisplay();
             }
@@ -1273,6 +1834,50 @@
             resetGame();
         }, false);
 
+        addEventListenerCompat(wrongBookBtn, 'click', showWrongBook);
+        addEventListenerCompat(wrongBookBtn, 'touchstart', function(e) {
+            e.preventDefault();
+            showWrongBook();
+        }, false);
+
+        addEventListenerCompat(wrongBookClose, 'click', hideWrongBook);
+        addEventListenerCompat(wrongBookClose, 'touchstart', function(e) {
+            e.preventDefault();
+            hideWrongBook();
+        }, false);
+
+        addEventListenerCompat(redoAllBtn, 'click', startRedoAll);
+        addEventListenerCompat(redoAllBtn, 'touchstart', function(e) {
+            e.preventDefault();
+            startRedoAll();
+        }, false);
+
+        addEventListenerCompat(clearWrongBtn, 'click', clearWrongQuestions);
+        addEventListenerCompat(clearWrongBtn, 'touchstart', function(e) {
+            e.preventDefault();
+            clearWrongQuestions();
+        }, false);
+
+        addEventListenerCompat(wrongBookList, 'click', function(e) {
+            var target = e.target || e.srcElement;
+            if (target && target.className.indexOf('wrong-item-redo') >= 0 && !target.disabled) {
+                var idx = parseInt(target.getAttribute('data-redo-idx'), 10);
+                if (!isNaN(idx)) {
+                    startRedoSingle(idx);
+                }
+            }
+        });
+        addEventListenerCompat(wrongBookList, 'touchstart', function(e) {
+            var target = e.target || e.srcElement;
+            if (target && target.className.indexOf('wrong-item-redo') >= 0 && !target.disabled) {
+                e.preventDefault();
+                var idx = parseInt(target.getAttribute('data-redo-idx'), 10);
+                if (!isNaN(idx)) {
+                    startRedoSingle(idx);
+                }
+            }
+        }, false);
+
         addEventListenerCompat(answerInput, 'keydown', function(e) {
             if (e.key === 'Enter' || e.keyCode === 13) {
                 e.preventDefault();
@@ -1305,10 +1910,12 @@
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', function() {
                 updateStats();
+                updateWrongBadge();
                 updateDisplay();
             });
         } else {
             updateStats();
+            updateWrongBadge();
             updateDisplay();
         }
 
