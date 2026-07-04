@@ -203,6 +203,7 @@
             max-width: 400px;
             margin-top: 16px;
             text-align: center;
+            position: relative;
         }
 
         .answer-label {
@@ -553,67 +554,88 @@
 
         .float-correct {
             position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translateX(-50%) scale(0.5);
-            font-size: 3rem;
-            font-weight: 900;
+            top: 50%;
+            right: calc(50% + 110px);
+            transform: translateY(-50%) scale(0.8);
+            font-size: 1.1rem;
+            font-weight: 800;
             color: #5cb85c;
-            text-shadow: 3px 3px 0 #e8f5e9, 0 0 20px rgba(92, 184, 92, 0.5);
-            z-index: 200;
+            text-shadow: 2px 2px 0 #e8f5e9;
+            z-index: 10;
             opacity: 0;
             pointer-events: none;
             white-space: nowrap;
+            padding: 8px 14px;
+            background: rgba(232, 245, 233, 0.95);
+            border-radius: 20px;
+            border: 2px solid #5cb85c;
+            box-shadow: 0 4px 12px rgba(92, 184, 92, 0.3);
         }
 
         .float-correct.show {
-            animation: floatUp 1.2s ease-out forwards;
+            animation: slideInLeft 1.2s ease-out forwards;
         }
 
         .float-wrong {
             position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translateX(-50%) scale(0.5);
-            font-size: 2.2rem;
-            font-weight: 900;
+            top: 50%;
+            left: calc(50% + 110px);
+            transform: translateY(-50%) scale(0.8);
+            font-size: 0.95rem;
+            font-weight: 800;
             color: #d9534f;
-            text-shadow: 3px 3px 0 #fdecea, 0 0 20px rgba(217, 83, 79, 0.5);
-            z-index: 200;
+            text-shadow: 2px 2px 0 #fdecea;
+            z-index: 10;
             opacity: 0;
             pointer-events: none;
             white-space: nowrap;
             text-align: center;
-            line-height: 1.4;
+            padding: 8px 14px;
+            background: rgba(253, 238, 234, 0.95);
+            border-radius: 20px;
+            border: 2px solid #d9534f;
+            box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3);
+            max-width: 130px;
         }
 
         .float-wrong .wrong-detail {
-            font-size: 1.2rem;
+            font-size: 0.75rem;
             font-weight: 700;
             display: block;
             margin-top: 4px;
         }
 
         .float-wrong.show {
-            animation: floatUp 1.5s ease-out forwards;
+            animation: slideInRight 1.5s ease-out forwards;
         }
 
-        @keyframes floatUp {
+        @keyframes slideInLeft {
             0% {
                 opacity: 0;
-                transform: translateX(-50%) translateY(20px) scale(0.5);
+                transform: translateY(-50%) translateX(20px) scale(0.6);
             }
-            20% {
+            30% {
                 opacity: 1;
-                transform: translateX(-50%) translateY(-10px) scale(1.2);
-            }
-            60% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(-30px) scale(1);
+                transform: translateY(-50%) translateX(-5px) scale(1.15);
             }
             100% {
                 opacity: 0;
-                transform: translateX(-50%) translateY(-60px) scale(0.9);
+                transform: translateY(-50%) translateX(-15px) scale(0.85);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateY(-50%) translateX(-20px) scale(0.6);
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(-50%) translateX(5px) scale(1.15);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50%) translateX(15px) scale(0.85);
             }
         }
 
@@ -964,14 +986,14 @@
     </div>
 
     <div class="word-area">
-        <div class="float-correct" id="floatCorrect">✅ 答对啦！</div>
-        <div class="float-wrong" id="floatWrong"><span id="floatWrongTitle">❌ 答错了</span><span class="wrong-detail" id="floatWrongDetail"></span></div>
         <div class="word-card" id="wordCard">
             <div class="word-text" id="currentWord">🐣 准备开始</div>
             <div class="word-sub" id="subTypeLabel">👩‍🏫 点击下方按钮开始</div>
         </div>
 
         <div class="answer-area">
+            <div class="float-correct" id="floatCorrect">✅ 答对啦！</div>
+            <div class="float-wrong" id="floatWrong"><span id="floatWrongTitle">❌ 答错了</span><span class="wrong-detail" id="floatWrongDetail"></span></div>
             <span class="answer-label">输入答案</span>
             <input type="number" class="answer-input" id="answerInput" placeholder="?" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
             <div class="result-hint" id="resultHint"></div>
