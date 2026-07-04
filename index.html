@@ -573,7 +573,7 @@
         }
 
         .float-correct.show {
-            animation: slideInLeft 1.2s ease-out forwards;
+            animation: slideInLeft 3s ease-out forwards;
         }
 
         .float-wrong {
@@ -606,7 +606,7 @@
         }
 
         .float-wrong.show {
-            animation: slideInRight 1.5s ease-out forwards;
+            animation: slideInRight 3s ease-out forwards;
         }
 
         @keyframes slideInLeft {
@@ -614,9 +614,13 @@
                 opacity: 0;
                 transform: translateY(-50%) translateX(20px) scale(0.6);
             }
-            30% {
+            15% {
                 opacity: 1;
                 transform: translateY(-50%) translateX(-5px) scale(1.15);
+            }
+            40% {
+                opacity: 1;
+                transform: translateY(-50%) translateX(-5px) scale(1.1);
             }
             100% {
                 opacity: 0;
@@ -629,9 +633,13 @@
                 opacity: 0;
                 transform: translateY(-50%) translateX(-20px) scale(0.6);
             }
-            30% {
+            15% {
                 opacity: 1;
                 transform: translateY(-50%) translateX(5px) scale(1.15);
+            }
+            40% {
+                opacity: 1;
+                transform: translateY(-50%) translateX(5px) scale(1.1);
             }
             100% {
                 opacity: 0;
@@ -1394,7 +1402,7 @@
             floatTimer = setTimeout(function() {
                 floatCorrect.classList.remove('show');
                 floatTimer = null;
-            }, 1200);
+            }, 3000);
         }
 
         function showFloatWrong(correctAnswer) {
@@ -1410,7 +1418,7 @@
             floatTimer = setTimeout(function() {
                 floatWrong.classList.remove('show');
                 floatTimer = null;
-            }, 1500);
+            }, 3000);
         }
 
         function addWrongQuestion(q, userAnswer) {
