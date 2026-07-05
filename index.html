@@ -1003,7 +1003,7 @@
             <div class="float-correct" id="floatCorrect">✅ 答对啦！</div>
             <div class="float-wrong" id="floatWrong"><span id="floatWrongTitle">❌ 答错了</span><span class="wrong-detail" id="floatWrongDetail"></span></div>
             <span class="answer-label">输入答案</span>
-            <input type="number" class="answer-input" id="answerInput" placeholder="?" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+            <input type="text" class="answer-input" id="answerInput" placeholder="?" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="none" readonly onfocus="this.blur()">
             <div class="result-hint" id="resultHint"></div>
         </div>
     </div>
@@ -1384,10 +1384,10 @@
                     }
                 }
             } else {
+                answerInput.readOnly = false;
                 answerInput.value = '';
+                answerInput.readOnly = true;
             }
-
-            answerInput.focus();
         }
 
         function showFloatCorrect() {
@@ -1557,8 +1557,9 @@
             answerInput.classList.remove('correct', 'wrong');
             resultHint.textContent = '';
             resultHint.classList.remove('correct', 'wrong');
+            answerInput.readOnly = false;
             answerInput.value = '';
-            answerInput.focus();
+            answerInput.readOnly = true;
         }
 
         function submitRedoAnswer() {
@@ -1788,6 +1789,7 @@
             var target = e.target || e.srcElement;
             var num = target.getAttribute('data-num');
             if (num) {
+                answerInput.readOnly = false;
                 if (num === '-') {
                     if (answerInput.value.indexOf('-') === -1) {
                         answerInput.value = '-' + answerInput.value;
@@ -1795,22 +1797,24 @@
                 } else {
                     answerInput.value += num;
                 }
-                answerInput.focus();
+                answerInput.readOnly = true;
             }
         }
 
         function handleDel() {
+            answerInput.readOnly = false;
             answerInput.value = answerInput.value.slice(0, -1);
-            answerInput.focus();
+            answerInput.readOnly = true;
         }
 
         function handleClear() {
+            answerInput.readOnly = false;
             answerInput.value = '';
+            answerInput.readOnly = true;
             wordCard.classList.remove('correct', 'wrong');
             answerInput.classList.remove('correct', 'wrong');
             resultHint.textContent = '';
             resultHint.classList.remove('correct', 'wrong');
-            answerInput.focus();
         }
 
         var numBtns = document.querySelectorAll('.num-btn[data-num]');
